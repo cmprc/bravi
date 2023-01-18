@@ -43,10 +43,10 @@ class ApiController extends Controller
   {
     if (Contact::where('id', $id)->exists()) {
       $contact = Contact::find($id);
-      $contact->name = is_null($request->name) ? $contact->name : $request->name;
-      $contact->email = is_null($request->email) ? $contact->email : $request->email;
-      $contact->phone = is_null($request->phone) ? $contact->phone : $request->phone;
-      $contact->whatsapp = is_null($request->whatsapp) ? $contact->whatsapp : $request->whatsapp;
+      $contact->name = $request->name;
+      $contact->email = $request->email ?? '';
+      $contact->phone = $request->phone ?? '';
+      $contact->whatsapp = $request->whatsapp ?? '';
       $contact->save();
 
       return response()->json([

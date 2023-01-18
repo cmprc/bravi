@@ -1,11 +1,6 @@
 @extends('layouts.master', ['title' => 'Contatos' ])
 
 @section('content')
-{{-- <section id="contacts">
-  <div class="contacts-wrapper">
-
-  </div>
-</section> --}}
 <div class="max-w mx-auto">
 
   <div class="p-4 max-w bg-white border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -23,18 +18,18 @@
           <div class="flex items-center space-x-4">
             <div class="flex-1 min-w-0">
               <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                {{ $item->name }}
+                {{ $item['name'] }}
               </p>
               <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                {{ $item->email }}
+                {{ $item['email'] }}
               </p>
             </div>
             <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-              <a href="{{ route('contatos.edit', $item->id) }}"
+              <a href="{{ route('contatos.edit', $item['id'] ) }}"
                 class="text-sm mr-4 font-medium text-blue-600 hover:underline dark:text-blue-500">
                 Editar
               </a>
-              <form action="{{ route('contatos.destroy', $item->id)}}" method="POST">
+              <form action="{{ route('contatos.destroy', $item['id'] )}}" method="POST">
                 <input name="_method" type="hidden" value="DELETE">
                 {{ csrf_field() }}
                 <button

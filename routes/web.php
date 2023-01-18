@@ -20,3 +20,5 @@ Route::get('/', function () {
 
 Route::get('/', [ContactController::class, 'index']);
 Route::resource('contatos', ContactController::class, ['except' => 'show']);
+
+Route::get('/validator', [ContactController::class, 'validator']);

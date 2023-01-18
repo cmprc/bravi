@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="max-w mx-auto bg-white p-16 dark:bg-gray-800 dark:border-gray-700">
-  <form id="form.{{ 'contatos' }}" action="{{ route('contatos'.(isset($contact) ? '.update' : '.store'), $contact->id ?? null) }}"
+  <form id="form.{{ 'contatos' }}" action="{{ route('contatos'.(isset($contact) ? '.update' : '.store'), $contact['id'] ?? null) }}"
     method="POST" enctype="multipart/form-data">
     @csrf
     @if(isset($contact))
@@ -14,25 +14,25 @@
         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nome</label>
         <input type="text" id="name"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Nome" value="{{ $contact->name ?? '' }}" name="name" required>
+          placeholder="Nome" value="{{ $contact['name'] ?? '' }}" name="name" required>
       </div>
       <div>
         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">E-mail</label>
         <input type="text" id="email"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="E-mail" value="{{ $contact->email ?? '' }}" name="email">
+          placeholder="E-mail" value="{{ $contact['email'] ?? '' }}" name="email">
       </div>
       <div>
         <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Telefone</label>
         <input type="text" id="phone"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Telefone" value="{{ $contact->phone ?? '' }}" name="phone">
+          placeholder="Telefone" value="{{ $contact['phone'] ?? '' }}" name="phone">
       </div>
       <div>
         <label for="whatsapp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Whatsapp</label>
         <input type="text" id="whatsapp"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Whatsapp" value="{{ $contact->whatsapp ?? '' }}" name="whatsapp">
+          placeholder="Whatsapp" value="{{ $contact['whatsapp'] ?? '' }}" name="whatsapp">
       </div>
     </div>
     <button type="submit"

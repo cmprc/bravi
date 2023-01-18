@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 class ContactController extends Controller
 {
   public function index(Request $request)
   {
-    $contacts = ApiController::getAllContacts();
-    $contacts = json_decode($contacts->getContent());
+    $request = Request::create('/api/contacts', 'GET');
+    $response = Route::dispatch($request);
+    $contacts = json_decode($response->getContent(), true);
 
     return view('contatos.index', compact('contacts'));
   }
@@ -23,8 +25,9 @@ class ContactController extends Controller
 
   public function edit(string $id)
   {
-    $contact = ApiController::getContact($id);
-    $contact = json_decode($contact->getContent());
+    $request = Request::create('/api/contacts/' . $id, 'GET');
+    $response = Route::dispatch($request);
+    $contact = json_decode($response->getContent(), true);
 
     return view("contatos.form", compact('contact'));
   }
@@ -43,9 +46,13 @@ class ContactController extends Controller
   {
     DB::transaction(function () use ($request, $id) {
       if (isset($id)) {
-        $contact = ApiController::updateContact($request, $id);
+        $req = Request::create('/api/contacts/' . $id, 'POST', $request->all());
+        $response = Route::dispatch($req);
+        $message = json_decode($response->getContent(), true);
       } else {
-        $contact = ApiController::createContact($request);
+        $req = Request::create('/api/contacts', 'POST', $request->all());
+        $response = Route::dispatch($req);
+        $message = json_decode($response->getContent(), true);
       }
     });
 
@@ -54,10 +61,17 @@ class ContactController extends Controller
 
   public function destroy(string $id)
   {
-    $register = ApiController::deleteContact($id);
+    $req = Request::create('/api/contacts/' . $id, 'DELETE');
+    $response = Route::dispatch($req);
+    $message = json_decode($response->getContent(), true);
 
     return redirect()
       ->route('contatos.index')
       ->with('message', __('Registro removido com sucesso!'));
+  }
+
+  public function validator()
+  {
+    return view('contatos.validator');
   }
 }
