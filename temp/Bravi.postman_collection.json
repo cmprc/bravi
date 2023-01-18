@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "7bbeb13f-df20-4023-a384-05b16e5932bf",
+		"name": "Bravi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10706797"
+	},
+	"item": [
+		{
+			"name": "Contato",
+			"item": [
+				{
+					"name": "Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Rafael",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "rafael@google.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "5499998888",
+									"type": "text"
+								},
+								{
+									"key": "whatsapp",
+									"value": "5499998888",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api-url}}contacts",
+							"host": [
+								"{{api-url}}contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}contacts",
+							"host": [
+								"{{api-url}}contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}contacts/1",
+							"host": [
+								"{{api-url}}contacts"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"id\": 1,\r\n\"name\": \"Rafael Cristaldo\",\r\n\"email\": \"rafael@google.com\",\r\n\"phone\": \"5499998888\",\r\n\"whatsapp\": \"5499998888\",\r\n\"created_at\": \"2023-01-16T01:19:54.000000Z\",\r\n\"updated_at\": \"2023-01-16T01:19:54.000000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api-url}}contacts/1",
+							"host": [
+								"{{api-url}}contacts"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remover",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}contacts/1",
+							"host": [
+								"{{api-url}}contacts"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api-url",
+			"value": "http://127.0.0.1:8000/api/",
+			"type": "string"
+		}
+	]
+}
